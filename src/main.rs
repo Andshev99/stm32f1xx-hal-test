@@ -14,7 +14,6 @@ use stm32f1xx_hal::{
 use cortex_m_rt::entry;
 use embedded_hal::digital::v2::OutputPin;
 
-// Определяем входную функцию.
 #[entry]
 fn main() -> ! {    
     let cp = cortex_m::Peripherals::take().unwrap();
@@ -33,8 +32,6 @@ fn main() -> ! {
     let mut timer = Timer::syst(cp.SYST, &clocks)
     .start_count_down(1.hz());
 
-    // Ждём пока таймер запустит обновление
-    // и изменит состояние светодиода.
     loop {
         block!(timer.wait()).unwrap();
         led.set_high().unwrap();

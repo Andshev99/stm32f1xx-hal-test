@@ -5,26 +5,39 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "openocd_cfg",
             "type": "cortex-debug",
             "request": "launch",
             "servertype": "openocd",
             "cwd": "${workspaceRoot}",
             "executable": "./target/thumbv7m-none-eabi/debug/stm32f103c8t6",
-            "name": "Debug (OpenOCD)",
             "device": "STM32F103C8T6",
             "configFiles": [
                 "interface/stlink-v2-1.cfg",
                 "target/stm32f1x.cfg"
             ],
-            "runToMain": true
+            "runToMain": true,
+            "showDevDebugOutput": "none"
         },
         {
-            "name": "Debug Blinky",
+            "name": "openocd_nocfg",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",            
+            "cwd": "${workspaceRoot}",
+            "executable": "./target/thumbv7m-none-eabi/debug/stm32f103c8t6",            
+            "configFiles": [],
+            "searchDir": [],
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "none"
+        },
+        {
+            "name": "OpenocdF7",
             "request": "launch",
             "type": "cortex-debug",
             "cwd": "${workspaceRoot}",
-            "executable": "${workspaceFolder}/target/thumbv7em-none-eabi/release/blinky",
-            "svdFile": "${workspaceFolder}/STM32F7x6.svd",
+            "executable": "./target/thumbv7m-none-eabi/debug/stm32f103c8t6",
+            "svdFile": "${workspaceFolder}/STM32F103.svd",
             "servertype": "openocd",
             "configFiles": ["st_nucleo_f7.cfg"],
             "preLaunchTask": "Build binary",
@@ -36,36 +49,5 @@
             ],
             "postLaunchCommands": ["continue"] // Don't stop before at the first line
         },
-        {
-            "cwd": "${workspaceFolder}",
-            "executable": "./bin/executable.elf",
-            "name": "Debug with ST-Link",
-            "request": "launch",
-            "type": "cortex-debug",
-            "runToEntryPoint": "main",
-            "showDevDebugOutput": "none",
-            "servertype": "stlink"
-        },
-        {
-            "cwd": "${workspaceRoot}",
-            "executable": "./bin/executable.elf",
-            "name": "Debug with OpenOCD",
-            "request": "launch",
-            "type": "cortex-debug",
-            "servertype": "openocd",
-            "configFiles": [],
-            "searchDir": [],
-            "runToEntryPoint": "main",
-            "showDevDebugOutput": "none"
-        },
-        {
-            "name": "Cortex Debug",
-            "cwd": "${workspaceFolder}",
-            "executable": "./bin/executable.elf",
-            "request": "launch",
-            "type": "cortex-debug",
-            "runToEntryPoint": "main",
-            "servertype": "jlink"
-        }
     ]
 }
