@@ -10,32 +10,15 @@
             "request": "launch",
             "servertype": "openocd",
             "cwd": "${workspaceRoot}",
-            "executable": "./target/thumbv7m-none-eabi/debug/stm32f103c8t6",
+            "executable": "./target/thumbv7m-none-eabi/debug/blinky",
             "device": "STM32F103C8T6",
+            "svdFile": "${workspaceFolder}/STM32F103.svd",
             "configFiles": [
                 "interface/stlink-v2-1.cfg",
                 "target/stm32f1x.cfg"
             ],
             "runToEntryPoint": "main",
             "showDevDebugOutput": "none"
-        },
-        {
-            "name": "OpenocdF7",
-            "request": "launch",
-            "type": "cortex-debug",
-            "cwd": "${workspaceRoot}",
-            "executable": "./target/thumbv7m-none-eabi/debug/stm32f103c8t6",
-            "svdFile": "${workspaceFolder}/STM32F103.svd",
-            "servertype": "openocd",
-            "configFiles": ["st_nucleo_f7.cfg"],
-            "preLaunchTask": "Build binary",
-            "preLaunchCommands": [
-                "monitor init",
-                "monitor reset init",
-                "monitor halt",
-                "monitor flash write_image erase ./target/thumbv7em-none-eabi/release/blinky.bin 0x08000000"
-            ],
-            "postLaunchCommands": ["continue"] // Don't stop before at the first line
         },
     ]
 }

@@ -1,6 +1,5 @@
 [package]
-# name = "stm32f1xx-hal-test"
-name = "stm32f103c8t6"
+name = "blinky"
 version = "0.1.0"
 edition = "2021"
 
