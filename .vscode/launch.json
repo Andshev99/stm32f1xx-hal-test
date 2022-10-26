@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "openocd_cfg",
+            "name": "openocd",
             "type": "cortex-debug",
             "request": "launch",
             "servertype": "openocd",
@@ -16,18 +16,6 @@
                 "interface/stlink-v2-1.cfg",
                 "target/stm32f1x.cfg"
             ],
-            "runToMain": true,
-            "showDevDebugOutput": "none"
-        },
-        {
-            "name": "openocd_nocfg",
-            "type": "cortex-debug",
-            "request": "launch",
-            "servertype": "openocd",            
-            "cwd": "${workspaceRoot}",
-            "executable": "./target/thumbv7m-none-eabi/debug/stm32f103c8t6",            
-            "configFiles": [],
-            "searchDir": [],
             "runToEntryPoint": "main",
             "showDevDebugOutput": "none"
         },

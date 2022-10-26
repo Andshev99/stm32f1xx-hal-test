@@ -22,20 +22,17 @@ fn main() -> ! {
     let mut rcc = dp.RCC.constrain();
 
     let clocks = rcc.cfgr.freeze(&mut flash.acr);
-    let mut gpiob = dp.GPIOB.split(&mut rcc.apb2);
+    let mut gpioc = dp.GPIOC.split(&mut rcc.apb2);
 
-    // Конфигурируем пин b12 как двухтактный выход.
-    // Регистр "crh" передаётся в функцию для настройки порта.
     // Для пинов 0-7, необходимо передавать регистр "crl".
-    let mut led = gpiob.pb12.into_push_pull_output(&mut gpiob.crh);
-    // Конфигурируем системный таймер на запуск обновления каждую секунду.
+    let mut ledr = gpioc.pc13.into_push_pull_output(&mut gpioc.crh);
     let mut timer = Timer::syst(cp.SYST, &clocks)
     .start_count_down(1.hz());
 
     loop {
         block!(timer.wait()).unwrap();
-        led.set_high().unwrap();
+        ledr.set_high().unwrap();
         block!(timer.wait()).unwrap();
-        led.set_low().unwrap();
+        ledr.set_low().unwrap();
     }
 }
